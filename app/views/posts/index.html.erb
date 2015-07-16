@@ -8,10 +8,7 @@
     <span>by: <%=link_to post.user.username, user_path(post.user)%></span><br>
     <%=link_to post.title, post_path(post)%><br>
     <%=my_time(post.created_at)%>
-    <%if session[:user_id] == post.user.id%>
-      <%=button_to 'Edit', edit_post_path(post), method: :get%>
-      <%=button_to 'Delete', post_path(post), method: :delete%>
-    <%end%>
+    <%= render partial: 'owner', locals: {post: post}%>
   </li>
 <%end%>
 <ol>
