@@ -4,3 +4,14 @@
 <p><%=@post.body%></p>
 </div>
 
+
+<h4>Comments:</h4>
+<%=button_to 'New Comment', new_post_comment_path(@post), method: :get%>
+<ol>
+<%@comments.each do |comment|%>
+  <li><%=comment.body%><br>
+      <span>by: <%=link_to comment.user.username, user_path(comment.user)%> - <%=my_time(comment.created_at)%></span><br>
+  </li>
+<%end%>
+</ol>
+

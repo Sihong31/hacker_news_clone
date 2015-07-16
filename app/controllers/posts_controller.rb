@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :require_login, only:[:new,:edit,:delete]
 
   def index
     @posts = Post.all.order("created_at desc")
@@ -20,10 +21,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    @comments = @post.comments
   end
 
   def edit
     @post = Post.find_by(id: params[:id])
+    owner_auth(@post.user_id)
   end
 
   def update
