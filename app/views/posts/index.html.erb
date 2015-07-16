@@ -1,0 +1,13 @@
+<h2 id= "index_title"> Welcome to Hacker News!</h2>
+
+<div id= "posts">
+<%=button_to 'New Post', new_post_path, method: :get%>
+<ol>
+<%@posts.each do |post|%>
+  <li><%=link_to post.title, post_path(post)%><br>
+      <%=my_time(post.created_at)%></li>
+<%end%>
+<ol>
+</div>
+
+
