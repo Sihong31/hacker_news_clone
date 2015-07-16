@@ -5,7 +5,7 @@
 <%@posts.each do |post|%>
   <li><%=link_to post.title, post_path(post)%>
       <%=my_time(post.created_at)%>
-      <%= render partial: 'owner', locals: {post: post}%>
+      <%= render partial: 'post_owner', locals: {post: post}%>
   </li>
 <%end%>
 </ol>
@@ -15,6 +15,7 @@
 <%@comments.each do |comment|%>
   <li><%=link_to comment.body, post_path(comment.post_id)%>
       <%=my_time(comment.created_at)%>
+      <%= render partial: 'comment_owner', locals: {comment: comment}%>
   </li>
 <%end%>
 </ol>
