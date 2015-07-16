@@ -25,3 +25,35 @@
 #posts{
   padding-top: 50px;
 }
+
+#login_errors{
+  /*border: 1px solid red;*/
+  display:inline;
+  color: red;
+  margin-left: 5px;
+}
+
+#auth{
+  margin-left: 5px;
+}
+
+#new_post_button{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.new_post{
+  margin-left: 20px;
+}
+
+h3 {
+  margin-left: 20px;
+}
+
+#posts{
+  margin-left: 20px;
+}
+
+#login_form{
+  margin-top: 15px;
+}

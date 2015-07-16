@@ -5,11 +5,17 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:session][:username])
-    if user && user.authenticate(params[:session][:password])
+    if user
+      if user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       redirect_to posts_path
+      else
+        flash[:errors] = "Invalid username and password combination."
+        redirect_to posts_path
+      end
     else
-      redirect_to login_path
+      flash[:errors] = "Username does not exist."
+      redirect_to posts_path
     end
   end
 

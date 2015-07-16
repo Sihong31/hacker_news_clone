@@ -10,12 +10,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.user_id = session[:user_id]
-    if post.save
-      redirect_to post_path(post)
+    @post = Post.new(post_params)
+    @post.user_id = session[:user_id]
+    if @post.save
+      request.xhr? ? render(partial: 'post', object: @post, layout: false) : redirect_to(@post)
     else
-      redirect_to new_post_path
+      request.xhr? ? render(status:422) : render('new')
     end
   end
 

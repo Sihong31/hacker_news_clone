@@ -2,9 +2,11 @@
 
 <h2 id= "index_title"> Welcome to Hacker News!</h2>
 
+
+<%=button_to 'New Post', new_post_path, id: "new_post_button", method: :get%>
+<div id= "new_post_form"></div>
 <div id= "posts">
-<%=button_to 'New Post', new_post_path, method: :get%>
-<ol>
+
 <%@posts.each do |post|%>
   <li>
     <span>by: <%=link_to post.user.username, user_path(post.user)%></span><br>
@@ -13,7 +15,7 @@
     <%= render partial: 'post_owner', locals: {post: post}%>
   </li>
 <%end%>
-<ol>
+
 </div>
 
 

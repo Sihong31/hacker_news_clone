@@ -1,4 +1,14 @@
-<%unless session[:user_id]%>
+<% if flash[:errors] %>
+<div id="login_errors">
+ <%= flash[:errors]%>
+</div>
+<%end%><br>
+
+<div id="auth">
+<%if session[:user_id]%>
+  <%=link_to 'Log Out', logout_path, method: :delete%>
+<%else%>
   <%=link_to 'Login', login_path, id: "login"%>
   <%=link_to 'Sign Up', new_user_path, id: "signup"%>
 <%end%>
+</div>
