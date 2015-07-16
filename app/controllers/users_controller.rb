@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @username = @user.username
     @posts = @user.posts
     @comments = @user.comments
   end

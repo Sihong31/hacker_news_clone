@@ -9,13 +9,8 @@
 <body>
 <%if session[:user_id]%>
   <%=link_to 'Logout', logout_path, method: :delete%>
-<%else%>
-  <%=link_to 'Login', login_path%>
-  <%=link_to 'Sign Up', new_user_path%>
 <%end%>
 <%= yield %>
-
-<%=button_to 'Back to Home', root_path, method: :get%>
 
 </body>
 </html>

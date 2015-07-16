@@ -1,6 +1,6 @@
-<h2>Welcome to <%=@user.username%>'s profile</h2>
+<h2>Welcome to <%=@username%>'s profile</h2>
 
-<h4><%=@user.username%>'s posts:</h4>
+<h4><%=@username%>'s posts:</h4>
 <ol>
 <%@posts.each do |post|%>
   <li><%=link_to post.title, post_path(post)%>
@@ -10,7 +10,7 @@
 <%end%>
 </ol>
 
-<h4><%=@user.username%>'s comments:</h4>
+<h4><%=@username%>'s comments:</h4>
 <ol>
 <%@comments.each do |comment|%>
   <li><%=link_to comment.body, post_path(comment.post_id)%>
