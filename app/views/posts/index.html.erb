@@ -10,7 +10,11 @@
 <%@posts.each do |post|%>
   <li>
     <span>by: <%=link_to post.user.username, user_path(post.user)%></span><br>
-    <%=link_to post.title, post_path(post)%><br>
+    <div class="post">
+      <%=link_to post.title, post_path(post)%>
+      <text>votes:</text><span class="vote_count"><%=post.vote_count%></span>
+      <%=button_to 'Like', post_vote_path(post), form_class: "up_vote", method: :put%>
+    </div><br>
     <%=my_time(post.created_at)%>
     <%= render partial: 'post_owner', locals: {post: post}%>
   </li>
@@ -19,3 +23,4 @@
 </div>
 
 
+<!-- image_tag("thumbs-up.jpg", width: 25, height: 25), post_vote_path(post) -->

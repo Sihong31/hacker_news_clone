@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+  put '/posts/:id/vote' => 'posts#vote', as: :post_vote
 
   root 'posts#index'
 
