@@ -4,8 +4,10 @@
 <%=button_to 'New Post', new_post_path, method: :get%>
 <ol>
 <%@posts.each do |post|%>
-  <li><%=link_to post.title, post_path(post)%><br>
-      <%=my_time(post.created_at)%></li>
+  <li>
+    <span>by: <%=link_to post.user.username, user_path(post.user)%></span><br>
+    <%=link_to post.title, post_path(post)%><br>
+    <%=my_time(post.created_at)%></li><br>
 <%end%>
 <ol>
 </div>
