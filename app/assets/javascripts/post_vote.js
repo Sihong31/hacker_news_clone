@@ -10,7 +10,6 @@ $(document).ready(function(){
       dataType: 'json'
     })
     .done(function(voteData){
-      console.log('hi')
       $("#vote_count" + divID).text(voteData.post_vote);
     })
     .fail(function(error){

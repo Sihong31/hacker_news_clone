@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   put '/posts/:id/vote' => 'posts#vote', as: :post_vote
+  put '/comments/:id/vote' => 'comments#vote', as: :comment_vote
 
   root 'posts#index'
 

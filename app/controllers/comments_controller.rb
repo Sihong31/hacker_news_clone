@@ -6,19 +6,30 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment = Comment.new(comment_params)
-    comment.user_id = session[:user_id]
-    comment.post_id = params[:post_id]
-    if comment.save
-      redirect_to post_path(comment.post_id)
+    @comment = Comment.new(comment_params)
+    @comment.user_id = session[:user_id]
+    @comment.post_id = params[:post_id]
+    if @comment.save
+      request.xhr? ? render(partial: 'comment', object: @comment, layout: false) : redirect_to(@comment)
     else
-      redirect_to new_post_comment_path(comment.post_id)
+      request.xhr? ? render(status:422) : render('new')
     end
   end
 
   def edit
     @post = Post.find_by(id: params[:post_id])
     @comment = Comment.find_by(id: params[:id])
+  end
+
+  def vote
+    comment = Comment.find_by(id: params[:id])
+    if request.xhr?
+      comment.increment!(:vote_count)
+      @comment_vote = comment.vote_count
+      render json: {vote_count: @comment_vote}.to_json
+    else
+      redirect_to post_path(id: comment.post_id)
+    end
   end
 
   def update

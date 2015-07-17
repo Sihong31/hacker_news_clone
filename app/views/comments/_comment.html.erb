@@ -1,0 +1,10 @@
+<li><%=comment.body%><br>
+  <span>by: <%=link_to comment.user.username, user_path(comment.user)%> - <%=my_time(comment.created_at)%></span>
+  <text> - votes: </text>
+  <span id = "span<%=comment.id%>"><%=comment.vote_count%></span><br>
+  <%=button_to 'Upvote', comment_vote_path(comment), form_class: "comment_upvote",method: :put%>
+</li>
+<%if session[:user_id] == comment.user.id%>
+<%=button_to 'Edit', edit_post_comment_path(post_id:comment.post_id, id: comment.id), method: :get%>
+<%=button_to 'Delete', post_comment_path(post_id:comment.post_id,id: comment.id), method: :delete%>
+<%end%>
