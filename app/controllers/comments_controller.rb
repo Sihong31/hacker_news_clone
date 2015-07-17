@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+  before_action :require_login, only:[:new,:edit,:delete, :vote]
   def new
     @post = Post.find_by(id: params[:post_id])
     @comment = Comment.new
