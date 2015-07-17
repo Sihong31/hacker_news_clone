@@ -6,5 +6,8 @@
     <%=button_to 'Like', post_vote_path(post), form_class: "up_vote", method: :put%>
   </div><br>
   <%=my_time(post.created_at)%>
-  <%= render partial: 'post_owner', locals: {post: post}%>
+  <%if session[:user_id] == post.user.id%>
+  <%=button_to 'Edit', edit_post_path(post), method: :get%>
+  <%=button_to 'Delete', post_path(post), method: :delete%>
+  <%end%>
 </li>
