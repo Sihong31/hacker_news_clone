@@ -34,8 +34,8 @@ class PostsController < ApplicationController
     if request.xhr?
       post.increment!(:vote_count)
       @post_vote = post.vote_count
-      {post_vote: @post_vote}.to_json
-      render nothing: true
+      render json: {post_vote: @post_vote}.to_json
+      # render nothing: true
     else
       redirect_to posts_path
     end

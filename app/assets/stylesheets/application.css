@@ -22,8 +22,9 @@
   width: 75%;
 }
 
-#posts{
+.posts{
   padding-top: 50px;
+  margin-left: 20px;
 }
 
 #login_errors{
@@ -47,10 +48,6 @@
 }
 
 h3 {
-  margin-left: 20px;
-}
-
-#posts{
   margin-left: 20px;
 }
 
