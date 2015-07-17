@@ -9,7 +9,6 @@ $(document).ready(function(){
     .done(function(postForm){
       $("#new_post_button").toggle(false);
       $("#new_post_form").append(postForm);
-
     })
     .fail(function(error){
       console.log(error, "fail panda")
@@ -24,7 +23,7 @@ $(document).ready(function(){
       data: $target.serialize()
     })
     .done(function(postPartial){
-      $("#posts").prepend(postPartial)
+      $(".posts").prepend(postPartial)
     })
     .fail(function(error){
       console.log(error, "smelly panda")
