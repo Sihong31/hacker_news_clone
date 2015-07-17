@@ -35,7 +35,6 @@ class PostsController < ApplicationController
       post.increment!(:vote_count)
       @post_vote = post.vote_count
       render json: {post_vote: @post_vote}.to_json
-      # render nothing: true
     else
       redirect_to posts_path
     end

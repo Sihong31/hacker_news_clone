@@ -26,7 +26,7 @@ $(document).ready(function(){
     .done(function(postPartial){
       $("#posts").prepend(postPartial)
     })
-    .done(function(error){
+    .fail(function(error){
       console.log(error, "smelly panda")
     });
   })
