@@ -1,7 +1,10 @@
 <li>
   <span>by: <%=link_to post.user.username, user_path(post.user)%></span><br>
-  <%=link_to post.title, post_path(post)%><br>
+  <div class="post", id="<%=post.id%>">
+    <%=link_to post.title, post_path(post)%>
+    <text>votes:</text><span id="vote_count<%=post.id%>"><%=post.vote_count%></span>
+    <%=button_to 'Like', post_vote_path(post), form_class: "up_vote", method: :put%>
+  </div><br>
   <%=my_time(post.created_at)%>
-  <%=button_to 'Edit', edit_post_path(post), method: :get%>
-  <%=button_to 'Delete', post_path(post), method: :delete%>
+  <%= render partial: 'post_owner', locals: {post: post}%>
 </li>

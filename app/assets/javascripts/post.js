@@ -1,14 +1,14 @@
 $(document).ready(function(){
-  $("#new_post_button").on('click',function(event){
+  $(".new_post_form").on('submit',function(event){
     event.preventDefault();
     var $target = $(event.target)
     $.ajax({
-      url: "/posts/new",
+      url: $target[0].action,
       data: $target.serialize()
     })
     .done(function(postForm){
       $("#new_post_button").toggle(false);
-      $("#new_post_form").append(postForm);
+      $("#new_post_form").html(postForm);
     })
     .fail(function(error){
       console.log(error, "fail panda")
@@ -24,6 +24,8 @@ $(document).ready(function(){
     })
     .done(function(postPartial){
       $(".posts").prepend(postPartial)
+      $(".new_post").remove();
+      $("#new_post_button").toggle(true);
     })
     .fail(function(error){
       console.log(error, "smelly panda")
