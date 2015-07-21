@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :require_login, only:[:new,:edit,:delete, :vote]
+  # Also can use private methods as a middle ground between totally DRY code and more readable code
   def new
     @post = Post.find_by(id: params[:post_id])
     @comment = Comment.new
@@ -17,8 +18,10 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @post = Post.find_by(id: params[:post_id])
+    # @post = Post.find_by(id: params[:post_id])
     @comment = Comment.find_by(id: params[:id])
+    # Use your associations to avoid unnecessary db calls.
+    @post = @comment.post
   end
 
   def vote
@@ -38,6 +41,7 @@ class CommentsController < ApplicationController
     if comment.save
       redirect_to post_path(comment.post_id)
     else
+      # let your user know why it didn't save
       redirect_to edit_post_comment_path(post_id: comment.post_id, id: comment.id)
     end
   end
@@ -49,6 +53,8 @@ class CommentsController < ApplicationController
   end
 
   private
+
+
 
   def comment_params
     params.require(:comment).permit(:body)

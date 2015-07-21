@@ -3,6 +3,7 @@ $(document).ready(function(){
     event.preventDefault();
     var $target = $(event.target);
   $.ajax({
+    // use event.target.action or .method. keep your data: line the same.
     url: $target[0].action,
     method: $target[0].method,
     data: $target.serialize(),

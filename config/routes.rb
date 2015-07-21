@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
+  # Remove the comments below when you're done so it's nice and clean.
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
