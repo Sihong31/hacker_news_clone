@@ -1,0 +1,21 @@
+<h2><a href="<%=@post.url%>"><%=@post.title%></a></h2>
+
+<div id="body">
+<p><%=@post.body%></p>
+</div>
+
+
+<h4>Comments:</h4>
+
+<%=button_to 'New Comment', new_post_comment_path(@post), form_class: :new_comment_form, method: :get%>
+<div id= "show_ajax_form">
+</div>
+<ol>
+<%@comments.each do |comment|%>
+  <div id="<%=comment.id%>" class = "comment">
+  <%= render partial: 'comments/comment', object: comment%>
+  </div>
+<%end%>
+</ol>
+
+

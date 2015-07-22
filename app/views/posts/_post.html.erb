@@ -1,0 +1,19 @@
+<li>
+  <span>by: <%=link_to post.user.username, user_path(post.user)%> - </span>
+  <%=my_time(post.created_at)%><br>
+  <div class="post", id="<%=post.id%>">
+    <div class = "post_title">
+    <%=link_to post.title, post_path(post)%>
+    </div>
+    <div class="count_div">
+    <text>votes:</text><span id="vote_count<%=post.id%>"><%=post.vote_count%></span>
+    </div>
+    <div class="like_div">
+    <%=button_to 'Upvote', post_vote_path(post), form_class: "up_vote", method: :put%>
+    </div>
+  </div><br><br>
+  <%if session[:user_id] == post.user.id%>
+  <%=button_to 'Edit', edit_post_path(post), method: :get%>
+  <%=button_to 'Delete', post_path(post), method: :delete%>
+  <%end%>
+</li><br>
