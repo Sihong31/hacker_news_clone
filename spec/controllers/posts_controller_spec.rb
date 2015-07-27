@@ -52,7 +52,12 @@ RSpec.describe PostsController, :type => :controller do
     end
   end
 
-  # describe "#delete" do
-  #   it "deletes the post" do
+  describe "#delete" do
+    it "deletes the post" do
+      old_count = Post.count
+      delete :destroy, id: sample_post.id
+      expect(response).to redirect_to(posts_path)
+    end
+  end
 
 end

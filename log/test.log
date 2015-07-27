@@ -5861,3 +5861,179 @@ Processing by SessionsController#new as HTML
   Rendered sessions/new.html.erb within layouts/application (1.0ms)
 Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms)
   [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.7ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'why it has to be in a bag' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("title", "url", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "why it has to be in a bag"], ["url", "bod.com"], ["body", "it just has to be"], ["user_id", 1], ["created_at", "2015-07-27 20:39:00.111965"], ["updated_at", "2015-07-27 20:39:00.111965"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'bagoftricks' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "bagoftricks"], ["password_digest", "$2a$04$mMZni2JisOM2ImmMosVKxup4QwF/6EOa1axiR64us51GDp6l21VyC"], ["first_name", "bagof"], ["last_name", "tricks"], ["created_at", "2015-07-27 20:39:00.178026"], ["updated_at", "2015-07-27 20:39:00.178026"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'why it has to be in a bag' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "url", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "why it has to be in a bag"], ["url", "bod.com"], ["body", "it just has to be"], ["user_id", 1], ["created_at", "2015-07-27 20:39:00.203677"], ["updated_at", "2015-07-27 20:39:00.203677"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'bagoftricks' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "bagoftricks"], ["password_digest", "$2a$04$n543Flv.dYE0N1BujAE9Gu/7seUJB8gCknqbRJ022NT1/FYI6AAaO"], ["first_name", "bagof"], ["last_name", "tricks"], ["created_at", "2015-07-27 20:39:00.208195"], ["updated_at", "2015-07-27 20:39:00.208195"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'why it has to be in a bag' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "url", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "why it has to be in a bag"], ["url", "bod.com"], ["body", "it just has to be"], ["user_id", 1], ["created_at", "2015-07-27 20:39:00.219958"], ["updated_at", "2015-07-27 20:39:00.219958"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'bagoftricks' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "bagoftricks"], ["password_digest", "$2a$04$M.l9s6xeEcLIwoF0FnQ9eOavOwQfkGzSdwOPCUHclyQ.xgNNkbXg2"], ["first_name", "bagof"], ["last_name", "tricks"], ["created_at", "2015-07-27 20:39:00.225019"], ["updated_at", "2015-07-27 20:39:00.225019"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'why it has to be in a bag' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("title", "url", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["title", "why it has to be in a bag"], ["url", "bod.com"], ["body", "it just has to be"], ["user_id", 1], ["created_at", "2015-07-27 20:39:00.238310"], ["updated_at", "2015-07-27 20:39:00.238310"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'bagoftricks' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "bagoftricks"], ["password_digest", "$2a$04$i1j9xHdmJTJVdCiJARAHye9G/sF9nhWTzL477WhAi.4XdNFGEgPdC"], ["first_name", "bagof"], ["last_name", "tricks"], ["created_at", "2015-07-27 20:39:00.243265"], ["updated_at", "2015-07-27 20:39:00.243265"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#create as HTML
+  Parameters: {"post"=>{"title"=>"why it has to be a bag", "url"=>"bod.com", "body"=>"it just has to be", "user_id"=>"1"}}
+Unpermitted parameter: user_id
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'why it has to be a bag' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("title", "body", "url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["title", "why it has to be a bag"], ["body", "it just has to be"], ["url", "bod.com"], ["user_id", 323], ["created_at", "2015-07-27 20:39:00.254883"], ["updated_at", "2015-07-27 20:39:00.254883"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/posts/249
+Completed 302 Found in 12ms (ActiveRecord: 1.0ms)
+  [1m[35mPost Load (0.6ms)[0m  SELECT  "posts".* FROM "posts"  ORDER BY "posts"."id" DESC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.2ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'why it has to be in a bag' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "url", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "why it has to be in a bag"], ["url", "bod.com"], ["body", "it just has to be"], ["user_id", 1], ["created_at", "2015-07-27 20:39:00.267268"], ["updated_at", "2015-07-27 20:39:00.267268"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'bagoftricks' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "bagoftricks"], ["password_digest", "$2a$04$ntt7247.r3rYz8/9wfuaPOfQ9Dc.t4PSKSMb8LhqlWEO9QthB7Snm"], ["first_name", "bagof"], ["last_name", "tricks"], ["created_at", "2015-07-27 20:39:00.272455"], ["updated_at", "2015-07-27 20:39:00.272455"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"250"}
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT 1[0m  [["id", 250]]
+  Rendered posts/show.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 64ms (Views: 1.5ms | ActiveRecord: 1.1ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'why it has to be in a bag' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("title", "url", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["title", "why it has to be in a bag"], ["url", "bod.com"], ["body", "it just has to be"], ["user_id", 1], ["created_at", "2015-07-27 20:39:00.346361"], ["updated_at", "2015-07-27 20:39:00.346361"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'bagoftricks' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "bagoftricks"], ["password_digest", "$2a$04$jTZENVH7E7FL9Af0A9G5zuvKTyN5YrrNzRTpu7ElZVpPs3nQkf44."], ["first_name", "bagof"], ["last_name", "tricks"], ["created_at", "2015-07-27 20:39:00.351490"], ["updated_at", "2015-07-27 20:39:00.351490"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by PostsController#update as HTML
+  Parameters: {"post"=>{"title"=>"Awesome god damn post"}, "id"=>"251"}
+  [1m[35mPost Load (0.3ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT 1  [["id", 251]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.4ms)[0m  SELECT  1 AS one FROM "posts" WHERE ("posts"."title" = 'Awesome god damn post' AND "posts"."id" != 251) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "posts" SET "title" = $1, "updated_at" = $2 WHERE "posts"."id" = $3[0m  [["title", "Awesome god damn post"], ["updated_at", "2015-07-27 20:39:00.360763"], ["id", 251]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/posts/251
+Completed 302 Found in 7ms (ActiveRecord: 1.1ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'why it has to be in a bag' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "url", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "why it has to be in a bag"], ["url", "bod.com"], ["body", "it just has to be"], ["user_id", 1], ["created_at", "2015-07-27 20:39:00.368384"], ["updated_at", "2015-07-27 20:39:00.368384"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'bagoftricks' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "bagoftricks"], ["password_digest", "$2a$04$qLvqWHhOoetYMz5FpUGHEeeN40KH0mdrMbQEByPFJCEcbCDDz4CCG"], ["first_name", "bagof"], ["last_name", "tricks"], ["created_at", "2015-07-27 20:39:00.372775"], ["updated_at", "2015-07-27 20:39:00.372775"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#update as HTML
+  Parameters: {"post"=>{"title"=>nil}, "id"=>"252"}
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT 1[0m  [["id", 252]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "posts" WHERE ("posts"."title" IS NULL AND "posts"."id" != 252) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered posts/edit.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 11ms (Views: 1.5ms | ActiveRecord: 1.0ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT 1[0m  [["id", 252]]
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mPost Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'why it has to be in a bag' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("title", "url", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["title", "why it has to be in a bag"], ["url", "bod.com"], ["body", "it just has to be"], ["user_id", 1], ["created_at", "2015-07-27 20:39:00.395279"], ["updated_at", "2015-07-27 20:39:00.395279"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'bagoftricks' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "bagoftricks"], ["password_digest", "$2a$04$v3zEmxo1HjV0LgDE4CdY1Ov7BM5jlge.ZASEQvb/V6xFLv1RwVf.C"], ["first_name", "bagof"], ["last_name", "tricks"], ["created_at", "2015-07-27 20:39:00.401481"], ["updated_at", "2015-07-27 20:39:00.401481"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "posts"
+Processing by PostsController#destroy as HTML
+  Parameters: {"id"=>"253"}
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT 1[0m  [["id", 253]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mComment Load (16.0ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 253]]
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "posts" WHERE "posts"."id" = $1  [["id", 253]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/posts
+Completed 302 Found in 22ms (ActiveRecord: 16.8ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "user@example.com"], ["password_digest", "$2a$04$zQ5FxwKXypEGZalEA79ape7tBvt5/.OVx40IRbd2M7UbD4PI4hCqC"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 20:39:00.436187"], ["updated_at", "2015-07-27 20:39:00.436187"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2015-07-27 16:39:00 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 294ms (Views: 283.8ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 16:39:00 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 16:39:00 -0400
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 328]]
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (0.3ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 9ms (Views: 6.7ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 16:39:00 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 16:39:00 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$dRTtModgxPlf3pSj8XQr/OhOBzPDLWNDVAVMZFWOYz84oDHeGnwhy"], ["created_at", "2015-07-27 20:39:00.805885"], ["updated_at", "2015-07-27 20:39:00.805885"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 6ms (ActiveRecord: 0.7ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 16:39:00 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
