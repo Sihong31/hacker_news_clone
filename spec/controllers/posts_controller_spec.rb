@@ -26,24 +26,27 @@ RSpec.describe PostsController, :type => :controller do
       expect(assigns(:posts)).to eq([sample_post])
     end
   end
+
   describe "#create" do
     it "creates a new post on index page" do
       post :create, { post: {title: "why it has to be a bag", url: "bod.com", body: "it just has to be", user_id: 1}}
       expect(response).to redirect_to post_path(Post.last)
     end
   end
+
   describe "#show" do
     it "assigns a post" do
       get :show, id: sample_post.id
       expect(assigns(:post)).to eq(sample_post)
     end
   end
+
   describe "#update" do
     it "saves a valid update" do
       put :update, {id: sample_post.id, post:{title: 'Awesome god damn post'}}
       expect(response).to redirect_to post_path(sample_post)
-      # expect(sample_post.reload.title).to eq('')
     end
+
     it "won't save a bad update" do
       old_title = sample_post.title
       put :update, {id: sample_post.id, post:{title: nil}}
@@ -61,4 +64,5 @@ RSpec.describe PostsController, :type => :controller do
       expect(Post.where(id: sample_post.id).count).to eq(0)
     end
   end
+
 end

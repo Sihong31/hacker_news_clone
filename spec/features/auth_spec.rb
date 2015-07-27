@@ -1,8 +1,12 @@
 require "rails_helper"
+# RSpec.describe SessionsController, :type => :controller do
+
+  # let (:some_test_user) {User.create!(username:'bagoftricks', password: '123456', first_name: "bagof", last_name: "tricks")}
 
 describe "A user can log in", :type => :feature do
   before :each do
     User.create!(:username => 'user@example.com', :password => 'password', :first_name => 'obama', :last_name => 'michelle')
+    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(some_test_user)
   end
 
   it "signs me in" do
@@ -31,7 +35,13 @@ describe "A user can sign up", :type => :feature do
     click_button 'Create Account'
     expect(page).to have_content 'Username'
   end
-
 end
 
+# describe "A user can log out" do
 
+#   delete :destroy, id: some_test_user.id
+#   expect(current_user).to be(nil)
+# end
+
+
+# end
