@@ -1,0 +1,1342 @@
+  [1m[36m (118.7ms)[0m  [1mDROP DATABASE IF EXISTS "hacker_news_clone_test"[0m
+  [1m[35m (238.5ms)[0m  CREATE DATABASE "hacker_news_clone_test" ENCODING = 'unicode'
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (5.7ms)[0m  CREATE TABLE "comments" ("id" serial primary key, "body" character varying NOT NULL, "user_id" integer NOT NULL, "post_id" integer NOT NULL, "vote_count" integer DEFAULT 0, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (3.3ms)[0m  [1mCREATE TABLE "posts" ("id" serial primary key, "title" character varying NOT NULL, "body" character varying NOT NULL, "url" character varying, "user_id" integer NOT NULL, "vote_count" integer DEFAULT 0, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (4.5ms)[0m  CREATE TABLE "users" ("id" serial primary key, "username" character varying NOT NULL, "password_digest" character varying NOT NULL, "first_name" character varying NOT NULL, "last_name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150716145501')
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150716145441')[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150716145455')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (1.4ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$pC1yVZGTOAEtGPb1rAYN6uiHRkSBNmk5LSqBqTVyfCwN9HSx..D0."], ["created_at", "2015-07-27 15:27:18.599745"], ["updated_at", "2015-07-27 15:27:18.599745"]]
+PG::NotNullViolation: ERROR:  null value in column "first_name" violates not-null constraint
+DETAIL:  Failing row contains (1, user@example.com, $2a$04$pC1yVZGTOAEtGPb1rAYN6uiHRkSBNmk5LSqBqTVyfCwN9HSx..D0., null, null, 2015-07-27 15:27:18.599745, 2015-07-27 15:27:18.599745).
+: INSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.0ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$GLNwmq35.8.Rr3KfXM7dUOrEwAt02xyNTpk.oWSM1LLZDMBQ7kWK."], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:29:09.133797"], ["updated_at", "2015-07-27 15:29:09.133797"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:29:09 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 2468ms (Views: 2459.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$Jx/rgmUayMFcPp8su6jSb.8E4.vOoIBu5VhKybkz.DsyHdi63B2ze"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:30:59.120844"], ["updated_at", "2015-07-27 15:30:59.120844"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:30:59 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 298ms (Views: 288.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$GSInCQYemdqV0qO0fVbpbO5HSyHz0okz7DI5Cwnj.emxDxqogOjPa"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:31:31.277610"], ["updated_at", "2015-07-27 15:31:31.277610"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:31:31 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 299ms (Views: 288.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$DmpdGfYSvr1U75QuO904y.hYXzxGvXZxKgIknYejXAMqPCfdfDoaa"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:32:29.028813"], ["updated_at", "2015-07-27 15:32:29.028813"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:32:29 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 290ms (Views: 281.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$DppikL4K0SS.afOHm.0sNOB/ktwA0/UZimpvonvfl82eeu1ovX/7i"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:32:55.649657"], ["updated_at", "2015-07-27 15:32:55.649657"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:32:55 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (14.9ms)
+Completed 200 OK in 292ms (Views: 281.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$UDPTHvfXe5tHBcEGHDW8HOADlr0h6m7UOmezXaBtRjaM/vvCDColi"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:33:13.807401"], ["updated_at", "2015-07-27 15:33:13.807401"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:33:13 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.6ms)
+Completed 200 OK in 304ms (Views: 295.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$MsSXezte6N4L3pMAps7n2OrKqgAolPvU2BUy8ymntmGF4G1yK5obC"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:33:44.844154"], ["updated_at", "2015-07-27 15:33:44.844154"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:33:44 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 294ms (Views: 283.1ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:33:45 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:33:45 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (0.9ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 18ms (Views: 11.1ms | ActiveRecord: 1.6ms)
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$XDaI5SbvyuBMP24WNFX.EuCrdrfDBHFLzECHBjuGomAsmDzU.y2Ti"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:34:41.104380"], ["updated_at", "2015-07-27 15:34:41.104380"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:34:41 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (14.1ms)
+Completed 200 OK in 300ms (Views: 289.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:34:41 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:34:41 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.9ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 17ms (Views: 10.3ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$fjYT09TYiORXVze6YyvVk.tTnYqIfpt.iiqD/mv9WWI5t75zpCjBa"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:35:12.130205"], ["updated_at", "2015-07-27 15:35:12.130205"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:35:12 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 294ms (Views: 285.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:35:12 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:35:12 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (1.1ms)
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 19ms (Views: 11.7ms | ActiveRecord: 1.5ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$DoESJ/fSVfxh742TBauRPOXsc5oBP59eAyHpZcffeWRuZU1LpMX0m"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:35:37.352160"], ["updated_at", "2015-07-27 15:35:37.352160"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:35:37 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (14.5ms)
+Completed 200 OK in 303ms (Views: 294.3ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:35:37 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:35:37 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 16ms (Views: 10.1ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$4/Uhxkx8DDfz8kBLrTEJTe.F4Md3ruLkxnnOTd0nLZF5IYBMkpc/q"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:36:21.136555"], ["updated_at", "2015-07-27 15:36:21.136555"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:36:21 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 301ms (Views: 292.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:36:21 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:36:21 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 17ms (Views: 9.8ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.0ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$AKAKSwFedi74O/hVPTVQAeMQ8uVYpg7GBPUFBsFFkcn4OVlSbgr2W"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:40:20.003947"], ["updated_at", "2015-07-27 15:40:20.003947"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:40:20 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 287ms (Views: 278.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:40:20 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:40:20 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.9ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 18ms (Views: 12.1ms | ActiveRecord: 1.3ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$noyv/TrPz/97fgTLqHFuf.4O7rl0GOlrrGyEDBEEl0XqtFwVQresu"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:40:31.729257"], ["updated_at", "2015-07-27 15:40:31.729257"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:40:31 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 298ms (Views: 287.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:40:32 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:40:32 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (1.0ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 16ms (Views: 9.5ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$3pJlBhfqnIGFHWoh.b0lqORBaPsppsvy8hHwD4ZvcUSrr/T1j3WOK"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:41:04.262462"], ["updated_at", "2015-07-27 15:41:04.262462"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:41:04 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 294ms (Views: 286.1ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:41:04 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.4ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:41:04 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 17ms (Views: 9.6ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$lIcCjnRY.9MH/Ka5eQCxJeEw0mJVLTvpSTfD0fDHontIcCSu5MHjO"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:48:58.437684"], ["updated_at", "2015-07-27 15:48:58.437684"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:48:58 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 297ms (Views: 286.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:48:58 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:48:58 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 19ms (Views: 11.6ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 11:48:58 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 11:48:58 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$j2kbnDI/FAg1KezC8ACJ.eyUXYON0F9jWY8PZP/QqfxMpZzO0ZMsK"], ["created_at", "2015-07-27 15:48:58.878870"], ["updated_at", "2015-07-27 15:48:58.878870"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.8ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:48:58 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$v6RgN3IGmZ9g2q7AR.aD1OKPjehyTncbW.6rQ9Y3CbAP97ue5Wbea"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:49:14.601761"], ["updated_at", "2015-07-27 15:49:14.601761"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:49:14 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 295ms (Views: 285.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:49:14 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:49:14 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (1.4ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 19ms (Views: 10.8ms | ActiveRecord: 2.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 11:49:15 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 9ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 11:49:15 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$iCnjVbBqVjjjaPSnR8ZWf.Gb5jhhFa9XIjJW2lGH8dk0xKVN.Qpji"], ["created_at", "2015-07-27 15:49:15.047882"], ["updated_at", "2015-07-27 15:49:15.047882"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.9ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:49:15 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$VwIegIV/AaHCgHlF3vx6ie66QrU4Ruag8iajQOFx2wUB./23E8tIe"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:49:40.104357"], ["updated_at", "2015-07-27 15:49:40.104357"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:49:40 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 305ms (Views: 294.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:49:40 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 11ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:49:40 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (1.3ms)
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 21ms (Views: 11.5ms | ActiveRecord: 1.5ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 11:49:40 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 10ms (Views: 9.7ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 11:49:40 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$zmF7Asn5IZuYzObxRJlySORj.CjwszJ8oTGjKNCW4GwfuJXdoenCq"], ["created_at", "2015-07-27 15:49:40.561564"], ["updated_at", "2015-07-27 15:49:40.561564"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 8ms (ActiveRecord: 0.9ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:49:40 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.0ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$G4M9AY7ckYOrOHj/rDwKwuVG9VgKdk7lL7NQd8oYeBgpkpVd9cJLW"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:55:13.231061"], ["updated_at", "2015-07-27 15:55:13.231061"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:55:13 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.4ms)
+Completed 200 OK in 303ms (Views: 294.9ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:55:13 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:55:13 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.9ms)
+  [1m[35mPost Load (0.9ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 19ms (Views: 11.7ms | ActiveRecord: 1.5ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 11:55:13 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 11:55:13 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$ht2y4zwNyRyE9LntFEKkKu37qzrYU4tUfyqozdAG81yS0XxArrqrS"], ["created_at", "2015-07-27 15:55:13.676912"], ["updated_at", "2015-07-27 15:55:13.676912"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.8ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:55:13 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$izEPh33PcfCf.X1mbeCXduYZiHFD5LD5YtZZ0ivUfBeh79Yqo8At2"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:57:58.630880"], ["updated_at", "2015-07-27 15:57:58.630880"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:57:58 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.6ms)
+Completed 200 OK in 298ms (Views: 288.8ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:57:58 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:57:59 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (1.0ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 18ms (Views: 10.2ms | ActiveRecord: 1.4ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 11:57:59 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 9ms (Views: 8.7ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 11:57:59 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.4ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$hFSKqiWBHCzLNQkJdNvoTO6OpgDpJdWJodfdAO7rZ/tS0MkKgfCDW"], ["created_at", "2015-07-27 15:57:59.058284"], ["updated_at", "2015-07-27 15:57:59.058284"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 1.1ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:57:59 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["created_at", "2015-07-27 15:57:59.094115"], ["updated_at", "2015-07-27 15:57:59.094115"]]
+PG::NotNullViolation: ERROR:  null value in column "user_id" violates not-null constraint
+DETAIL:  Failing row contains (1, hello, hello again, null, null, 0, 2015-07-27 15:57:59.094115, 2015-07-27 15:57:59.094115).
+: INSERT INTO "posts" ("title", "body", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (1.2ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$5ImF44eZBFQYtyretOsKG.ajlU56RWVZU3V6YiaHGtjJZLr643SY6"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 15:58:32.474871"], ["updated_at", "2015-07-27 15:58:32.474871"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:58:32 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 289ms (Views: 279.1ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 11:58:32 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 11:58:32 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (1.2ms)
+  [1m[35mPost Load (0.8ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 19ms (Views: 11.1ms | ActiveRecord: 1.4ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 11:58:32 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 9ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 11:58:32 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$mCbqUmPLxM2ATgYgcI4Ow.b8LRt8sCFTXWkFf.uauUTRS3qfux/Cy"], ["created_at", "2015-07-27 15:58:32.898274"], ["updated_at", "2015-07-27 15:58:32.898274"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.9ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 11:58:32 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 15:58:32.933033"], ["updated_at", "2015-07-27 15:58:32.933033"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 15:58:32.937947"], ["updated_at", "2015-07-27 15:58:32.937947"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$FcrLtqes7rEEmeFaPmdsgukBz4kPoLlDPxUwh9ZdAx4U6Kbv8QMra"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:02:52.507603"], ["updated_at", "2015-07-27 16:02:52.507603"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:02:52 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 296ms (Views: 287.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:02:52 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:02:52 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 16ms (Views: 9.4ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:02:52 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:02:52 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$6stRaEgj5uqN2UzzHmnDNuC1neTaSytM5V8nUevNtrsQZZ5Zy4.MS"], ["created_at", "2015-07-27 16:02:52.935024"], ["updated_at", "2015-07-27 16:02:52.935024"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 6ms (ActiveRecord: 0.7ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:02:52 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.4ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:02:52.961522"], ["updated_at", "2015-07-27 16:02:52.961522"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:02:52.965669"], ["updated_at", "2015-07-27 16:02:52.965669"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$RgipCu0xKgZS2VAQJ0S5GuM1RWyNTwwfGj8fR32Rl6AHFI4cxYp1K"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:03:22.717279"], ["updated_at", "2015-07-27 16:03:22.717279"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:03:22 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 301ms (Views: 292.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:03:23 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:03:23 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.9ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 17ms (Views: 10.9ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:03:23 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 8ms (Views: 7.7ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:03:23 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$A5b5E02223aavrgpAMOwdOtXAw/f1HROjmg7E3uoB2DfTFXJbta42"], ["created_at", "2015-07-27 16:03:23.151723"], ["updated_at", "2015-07-27 16:03:23.151723"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.8ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:03:23 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:03:23.188259"], ["updated_at", "2015-07-27 16:03:23.188259"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.2ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:03:23.191782"], ["updated_at", "2015-07-27 16:03:23.191782"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$3sTEOdtsRwf/DdGwRJHS6ezJzOk.O3WUxzYZd9xVuEx7NlNNT2aRW"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:04:32.126147"], ["updated_at", "2015-07-27 16:04:32.126147"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:04:32 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 302ms (Views: 291.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:04:32 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:04:32 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (1.1ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 18ms (Views: 10.8ms | ActiveRecord: 2.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:04:32 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 8ms (Views: 7.7ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:04:32 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$XTohInA0axLJEjusGrxk/ukjae1M9SKHVsfrkrbPugs5RVmQ/bOz."], ["created_at", "2015-07-27 16:04:32.567497"], ["updated_at", "2015-07-27 16:04:32.567497"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 8ms (ActiveRecord: 0.9ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:04:32 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:04:32.604079"], ["updated_at", "2015-07-27 16:04:32.604079"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.2ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:04:32.607749"], ["updated_at", "2015-07-27 16:04:32.607749"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$pz02q0jhM4CBler/idIF9.4VuXKHl2FsO4oH.4uxGr1t8BukBZ6Uu"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:05:31.904663"], ["updated_at", "2015-07-27 16:05:31.904663"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:05:31 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.8ms)
+Completed 200 OK in 299ms (Views: 289.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:05:32 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:05:32 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.9ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 18ms (Views: 11.3ms | ActiveRecord: 1.3ms)
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:05:32 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:05:32 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$5ffvoIYs9KSIfuwgwWAHKeVH5V4rfCUIbXlhZgdoQWs5XpWgHMHU2"], ["created_at", "2015-07-27 16:05:32.334026"], ["updated_at", "2015-07-27 16:05:32.334026"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.8ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:05:32 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.4ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:05:32.368984"], ["updated_at", "2015-07-27 16:05:32.368984"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.2ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:05:32.372449"], ["updated_at", "2015-07-27 16:05:32.372449"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$XxCh5guL/QG4X0dcRsdt6ObMsNXfaIGNoqCaxqCt5jk9Cbx.agvUe"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:08:59.195267"], ["updated_at", "2015-07-27 16:08:59.195267"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:08:59 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.3ms)
+Completed 200 OK in 296ms (Views: 286.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:08:59 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:08:59 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (1.0ms)
+  [1m[35mPost Load (0.9ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 21ms (Views: 14.1ms | ActiveRecord: 1.5ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:08:59 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 11ms (Views: 10.1ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:08:59 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$DLfc9Rt.rj9XLRJOBPwbi.M4gbT64dq3x7wDp.KGJtdrE09eZU7V2"], ["created_at", "2015-07-27 16:08:59.631735"], ["updated_at", "2015-07-27 16:08:59.631735"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.9ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:08:59 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:08:59.669281"], ["updated_at", "2015-07-27 16:08:59.669281"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:08:59.673420"], ["updated_at", "2015-07-27 16:08:59.673420"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$kiiPM1ZkUmqsoBUUlrDSWO4zc5LezQAz11rcqifCSRRK1bhlyICky"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:11:08.844766"], ["updated_at", "2015-07-27 16:11:08.844766"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:11:08 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 301ms (Views: 293.3ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:11:09 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:11:09 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.9ms)
+  [1m[35mPost Load (1.3ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 18ms (Views: 11.5ms | ActiveRecord: 1.9ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:11:09 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 7ms (Views: 6.9ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:11:09 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$n9IYJGEnCHoAvG1s3jvj4ObYDtY08.bfI.WuSeGaJjGfWHGSAJGPK"], ["created_at", "2015-07-27 16:11:09.279519"], ["updated_at", "2015-07-27 16:11:09.279519"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 1.0ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:11:09 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.5ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:11:09.312595"], ["updated_at", "2015-07-27 16:11:09.312595"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.2ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:11:09.317263"], ["updated_at", "2015-07-27 16:11:09.317263"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$TwHgz7atA3B58FNS0hmtMux.DvRG8Ui77inuZV0/lWRxiznhaxVH6"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:12:16.649084"], ["updated_at", "2015-07-27 16:12:16.649084"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:12:16 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 282ms (Views: 274.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:12:16 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 10ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:12:17 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 17ms (Views: 10.7ms | ActiveRecord: 1.3ms)
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:12:17 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:12:17 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$K6p1gkIgzNRI0LlQ//klxeJKmzQH0FYIxSqXSV2Myv4R.lxXMX60q"], ["created_at", "2015-07-27 16:12:17.067559"], ["updated_at", "2015-07-27 16:12:17.067559"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.8ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:12:17 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:12:17.100713"], ["updated_at", "2015-07-27 16:12:17.100713"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:12:17.105231"], ["updated_at", "2015-07-27 16:12:17.105231"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Started GET "/posts/new" for 127.0.0.1 at 2015-07-27 12:12:17 -0400
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$AGgPefcqL1R/AB0pil4eaO1dz7QUWL3rtJYojIGSMp8BxOvX.S/hm"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:12:59.817127"], ["updated_at", "2015-07-27 16:12:59.817127"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:12:59 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.9ms)
+Completed 200 OK in 299ms (Views: 289.8ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:13:00 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:13:00 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.8ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 18ms (Views: 10.9ms | ActiveRecord: 1.3ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:13:00 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:13:00 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$gsaPCOmO3zoVNIxUrjjv9etNZSa2/9ShAIoZAUAkhPoMfL9WOPNne"], ["created_at", "2015-07-27 16:13:00.250152"], ["updated_at", "2015-07-27 16:13:00.250152"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.8ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:13:00 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:13:00.285302"], ["updated_at", "2015-07-27 16:13:00.285302"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.2ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:13:00.288694"], ["updated_at", "2015-07-27 16:13:00.288694"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Started GET "/posts/new" for 127.0.0.1 at 2015-07-27 12:13:00 -0400
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$aGYOIT9CnYxKX1nt7yhvX..GcZxUt1uJP3TTDC96eB3z8hzU976.a"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:17:50.771113"], ["updated_at", "2015-07-27 16:17:50.771113"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:17:50 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 293ms (Views: 283.3ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:17:51 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:17:51 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.9ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 17ms (Views: 10.5ms | ActiveRecord: 1.3ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:17:51 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 8ms (Views: 7.6ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:17:51 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$3Ecbp9vYV5L7hmQqoztY..YedIZVxkwXRCBk0DkccfK41NVzfg8aW"], ["created_at", "2015-07-27 16:17:51.197839"], ["updated_at", "2015-07-27 16:17:51.197839"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 8ms (ActiveRecord: 0.8ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:17:51 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:17:51.231542"], ["updated_at", "2015-07-27 16:17:51.231542"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:17:51.236169"], ["updated_at", "2015-07-27 16:17:51.236169"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Started GET "/posts/new" for 127.0.0.1 at 2015-07-27 12:17:51 -0400
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["password_digest", "$2a$04$X/J4z6s5OozxlIDQfJLgoOClzz0e/IVQY4KT973nWoykfTLIm7X2C"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 16:26:50.667836"], ["updated_at", "2015-07-27 16:26:50.667836"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:26:50 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (13.6ms)
+Completed 200 OK in 304ms (Views: 294.9ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 12:26:51 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 9ms (ActiveRecord: 0.3ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 12:26:51 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (0.9ms)
+  [1m[35mPost Load (0.7ms)[0m  SELECT "posts".* FROM "posts"  ORDER BY created_at desc
+  Rendered posts/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 18ms (Views: 10.7ms | ActiveRecord: 1.2ms)
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 12:26:51 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 12:26:51 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$HNzcVb3wjq/ap5Pl3jwNw.zCnpJ3a.OTFnnaH.XQoadXTI3C1VaKO"], ["created_at", "2015-07-27 16:26:51.105330"], ["updated_at", "2015-07-27 16:26:51.105330"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/login
+Completed 302 Found in 6ms (ActiveRecord: 0.8ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 12:26:51 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.5ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 16:26:51.137461"], ["updated_at", "2015-07-27 16:26:51.137461"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 16:26:51.141937"], ["updated_at", "2015-07-27 16:26:51.141937"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 22ms (Views: 11.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (1.1ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'hello' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hello"], ["body", "hello again"], ["user_id", 1], ["created_at", "2015-07-27 18:55:27.285488"], ["updated_at", "2015-07-27 18:55:27.285488"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mPost Exists (0.3ms)[0m  SELECT  1 AS one FROM "posts" WHERE "posts"."title" = 'jello' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("title", "body", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "jello"], ["body", "jello again"], ["user_id", 4], ["created_at", "2015-07-27 18:55:27.289876"], ["updated_at", "2015-07-27 18:55:27.289876"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by PostsController#index as HTML
+  Rendered posts/index.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mPost Load (0.6ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "user@example.com"], ["password_digest", "$2a$04$zQ/McqPVZX5./ej..5AAdep2W9/NVZdV6YazXkutfDePc1l3KWtgG"], ["first_name", "obama"], ["last_name", "michelle"], ["created_at", "2015-07-27 18:55:27.363992"], ["updated_at", "2015-07-27 18:55:27.363992"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2015-07-27 14:55:27 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (39.7ms)
+Completed 200 OK in 382ms (Views: 363.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2015-07-27 14:55:27 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "session"=>{"username"=>"user@example.com", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "user@example.com"]]
+Redirected to http://www.example.com/posts
+Completed 302 Found in 8ms (ActiveRecord: 0.2ms)
+Started GET "/posts" for 127.0.0.1 at 2015-07-27 14:55:27 -0400
+Processing by PostsController#index as HTML
+  Rendered application/_auth.html.erb (1.6ms)
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT "posts".* FROM "posts"  ORDER BY created_at desc[0m
+  Rendered posts/index.html.erb within layouts/application (34.3ms)
+Completed 200 OK in 37ms (Views: 35.7ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+Started GET "/users/new" for 127.0.0.1 at 2015-07-27 14:55:27 -0400
+Processing by UsersController#new as HTML
+  Rendered users/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2015-07-27 14:55:27 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"username"=>"user@example.com", "first_name"=>"Panda", "last_name"=>"Poo", "password"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "first_name", "last_name", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "user@example.com"], ["first_name", "Panda"], ["last_name", "Poo"], ["password_digest", "$2a$04$t9PMgdK1l7xxoza7bQcVA.5SBhNKdf6dTa9k.aOI9ImYGIj9zjGD."], ["created_at", "2015-07-27 18:55:27.924656"], ["updated_at", "2015-07-27 18:55:27.924656"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/login
+Completed 302 Found in 7ms (ActiveRecord: 0.7ms)
+Started GET "/login" for 127.0.0.1 at 2015-07-27 14:55:27 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK
