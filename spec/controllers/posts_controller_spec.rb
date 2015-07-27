@@ -57,6 +57,7 @@ RSpec.describe PostsController, :type => :controller do
       old_count = Post.count
       delete :destroy, id: sample_post.id
       expect(response).to redirect_to(posts_path)
+      expect(Post.count).to eq(old_count - 1)
     end
   end
 
