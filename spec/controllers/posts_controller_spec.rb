@@ -32,4 +32,10 @@ RSpec.describe PostsController, :type => :controller do
       expect(response).to redirect_to post_path(Post.last)
     end
   end
+  describe "#show" do
+    it "assigns a post" do
+      get :show, id: sample_post.id
+      expect(assigns(:post)).to eq(sample_post)
+    end
+  end
 end
