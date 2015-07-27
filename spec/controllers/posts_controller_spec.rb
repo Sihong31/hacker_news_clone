@@ -38,4 +38,21 @@ RSpec.describe PostsController, :type => :controller do
       expect(assigns(:post)).to eq(sample_post)
     end
   end
+  describe "#update" do
+    it "saves a valid update" do
+      put :update, {id: sample_post.id, post:{title: 'Awesome god damn post'}}
+      expect(response).to redirect_to post_path(sample_post)
+      # expect(sample_post.reload.title).to eq('')
+    end
+    it "won't save a bad update" do
+      old_title = sample_post.title
+      put :update, {id: sample_post.id, post:{title: nil}}
+      expect(response).to render_template("edit")
+      expect(sample_post.reload.title).to eq(old_title)
+    end
+  end
+
+  # describe "#delete" do
+  #   it "deletes the post" do
+
 end
