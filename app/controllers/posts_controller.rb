@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_login, only:[:new,:edit,:delete, :vote]
+  # before_action :require_login, only:[:new,:edit,:delete, :vote]
 
   def index
     @posts = Post.all.order("created_at desc")
@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.user_id = session[:user_id]
+    @post.user = current_user
     if @post.save
       request.xhr? ? render(partial: 'post', object: @post, layout: false) : redirect_to(@post)
     else
@@ -41,12 +41,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = Post.find_by(id: params[:id])
-    post.assign_attributes(post_params)
-    if post.save
-      redirect_to post_path(post)
+    @post = Post.find_by(id: params[:id])
+    @post.assign_attributes(post_params)
+    if @post.save
+      redirect_to post_path(@post)
     else
-      redirect_to edit_post_path(post)
+      render "edit"
     end
   end
 
