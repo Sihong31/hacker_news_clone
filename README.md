@@ -26,6 +26,8 @@ heroku open #this will open your default browser on the root page of your app.
 
 Once it’s deployed:
 
+heroku apps:rename "your desired name", 
+
 heroku logs --tail
 to watch your logs. Leave off the —tail to get a snapshot instead
 
