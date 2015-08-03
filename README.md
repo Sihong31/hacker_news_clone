@@ -18,11 +18,19 @@ do bundle install and check the changes into git.
 
 Then, still in terminal in the app folder do
 
-heroku login  #this logs you into heroku
-heroku create  #this creates your app and creates a ‘heroku’ remote in your git setup
+#this logs you into heroku
+heroku login  
+
+#this creates your app and creates a ‘heroku’ remote in your git setup
+heroku create 
+
 git push heroku master #this deploys your app. 
-heroku run rake db:migrate #this will set up your database
-heroku open #this will open your default browser on the root page of your app.
+
+#this will set up your database
+heroku run rake db:migrate
+
+#this will open your default browser on the root page of your app
+heroku open 
 
 Once it’s deployed:
 
@@ -40,3 +48,6 @@ again
 
 To delete an app you don’t want any more
 heroku apps:destroy app-name #where app-name is the name heroku gave your app
+
+Change heroku remote
+heroku git:remote -a app-name
